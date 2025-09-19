@@ -1,2 +1,2 @@
-pip install -r backend/requirements-dev.txt
+-r requirements.txt
 black==24.8.0
