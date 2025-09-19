@@ -5,6 +5,8 @@ from .hacker_news_scraper import scrape_hacker_news
 from .save_articles import save_articles
 from .database import get_session, initialize_database
 
+ARTICLES_PER_PAGE = 10
+
 
 def create_app():
     app = Flask(__name__)
@@ -17,13 +19,28 @@ def create_app():
         <h1>Hacker News Scraper API</h1>
         <h2>API Usage</h2>
         <p>Use <code>/scrape</code> POST request with optional 'start_page' and 'page_count' parameters to scrape articles</p>
-        <p>Use <code>/articles</code> GET request to retrieve all scraped and saved articles</p>
+        <p>Use <code>/articles</code> GET request with optional 'page' query parameter to retrieve scraped and saved articles</p>
         """
 
     @app.get("/articles")
     def get_articles():
+        # get 'page' query parameter
+        page = int(request.args.get("page", 1))
+
+        if page < 1:
+            page = 1
+
         with get_session() as session:
-            articles = session.query(Article).all()
+            total = session.query(Article).count()
+
+            articles = (
+                session.query(Article)
+                .order_by(Article.date_created.desc())
+                .offset((page - 1) * ARTICLES_PER_PAGE)
+                .limit(ARTICLES_PER_PAGE)
+                .all()
+            )
+
             return jsonify(
                 {
                     "articles": [
@@ -36,7 +53,13 @@ def create_app():
                             "scraped_at": article.scraped_at.isoformat(),
                         }
                         for article in articles
-                    ]
+                    ],
+                    "pagination": {
+                        "page": page,
+                        "per_page": ARTICLES_PER_PAGE,
+                        "total": total,
+                        "pages": (total + ARTICLES_PER_PAGE - 1) // ARTICLES_PER_PAGE,
+                    },
                 }
             )
 
