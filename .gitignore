@@ -1,5 +1,15 @@
 .venv
-.vscode
+.vscode/*
+.DS_Store
 .env
 __pycache__
 app.db
+logs
+*.log
+pnpm-debug.log*
+node_modules
+dist
+dist-ssr
+*.local
+
+
