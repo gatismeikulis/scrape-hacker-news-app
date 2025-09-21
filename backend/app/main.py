@@ -1,4 +1,5 @@
 import click
+from flask_cors import CORS
 from flask import Flask, jsonify, request
 from .models import Article
 from .hacker_news_scraper import scrape_hacker_news
@@ -11,6 +12,8 @@ ARTICLES_PER_PAGE = 10
 def create_app():
     app = Flask(__name__)
 
+    _ = CORS(app, resources={r"/api/*": {"origins": "http://localhost:5173"}})
+
     initialize_database()
 
     @app.get("/")
@@ -18,11 +21,11 @@ def create_app():
         return """
         <h1>Hacker News Scraper API</h1>
         <h2>API Usage</h2>
-        <p>Use <code>/scrape</code> POST request with optional 'start_page' and 'page_count' parameters to scrape articles</p>
-        <p>Use <code>/articles</code> GET request with optional 'page' query parameter to retrieve scraped and saved articles</p>
+        <p>Use <code>/api/scrape</code> POST request with optional 'start_page' and 'page_count' parameters to scrape articles</p>
+        <p>Use <code>/api/articles</code> GET request with optional 'page' query parameter to retrieve scraped and saved articles</p>
         """
 
-    @app.get("/articles")
+    @app.get("/api/articles")
     def get_articles():
         # get 'page' query parameter
         page = int(request.args.get("page", 1))
@@ -63,7 +66,7 @@ def create_app():
                 }
             )
 
-    @app.post("/scrape")
+    @app.post("/api/scrape")
     def scrape_articles():
 
         try:
