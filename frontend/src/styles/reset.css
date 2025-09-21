@@ -1,0 +1,26 @@
+/* Box-sizing reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Remove default margin, increase line-height */
+* {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Make img, picture, video block elements */
+img,
+picture,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
