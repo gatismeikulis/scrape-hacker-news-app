@@ -3,6 +3,7 @@ import { useQueryScrapedHackerNews } from "./lib/useQueryScrapedHackerNews";
 import "./App.css";
 import { useMutationScrapeHackerNews } from "./lib/useMutationScrapeHackerNews";
 import type { ScrapingParams } from "./lib/types";
+import { DataTableWrapper } from "./components/DataTableWrapper";
 
 export function App() {
   const [page, setPage] = useState(1);
@@ -21,6 +22,15 @@ export function App() {
   if (status === "error") {
     return <div>Error</div>;
   }
+
+  const columns = [
+    { data: "title", title: "Title" },
+    { data: "points", title: "Points" },
+    { data: "date_created", title: "Date Created" },
+    { data: "scraped_at", title: "Scraped At" },
+    { data: "id", title: "ID" },
+    { data: "link", title: "Link" },
+  ];
 
   return (
     <div className="demo-text">
@@ -59,6 +69,7 @@ export function App() {
           })
         }
       />
+      <DataTableWrapper data={data.articles} columns={columns} />
     </div>
   );
 }
