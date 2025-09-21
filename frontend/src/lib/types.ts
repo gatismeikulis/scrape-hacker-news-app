@@ -13,3 +13,8 @@ export type Pagination = {
   total: number;
   pages: number;
 };
+
+export type ScrapingParams = {
+  start_page: number;
+  page_count: number;
+};
