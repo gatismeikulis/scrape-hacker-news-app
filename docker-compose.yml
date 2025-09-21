@@ -1,6 +1,19 @@
 version: "3.9"
 
 services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173" # Vite dev server port
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules # Prevent overwriting node_modules
+    depends_on:
+      - backend
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+      - VITE_API_URL=${VITE_API_URL:-http://localhost:5000/api}
+
   backend:
     build: ./backend
     ports:
@@ -10,7 +23,7 @@ services:
       - FLASK_DEBUG=true
       - FLASK_RUN_HOST=0.0.0.0 # makes flask reachable from the host
       - FLASK_RUN_PORT=5000 # makes flask listen this port
-      - FLASK_APP=app.main:app 
+      - FLASK_APP=app.main:app
       - DATABASE_URL=postgresql+psycopg://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres123}@postgres:5432/${POSTGRES_DB:-scrape_hn}
     volumes:
       - ./backend:/app

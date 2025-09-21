@@ -1,0 +1,6 @@
+node_modules
+dist
+README.md
+pnpm-debug.log*
+.DS_Store
+*.tsbuildinfo
