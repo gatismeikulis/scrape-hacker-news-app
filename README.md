@@ -111,3 +111,16 @@ flask --app backend.app.main:app scrape --start 1 --count 1
 ```
 
 where --start and --count are changeable parameters
+
+
+### Testing
+
+To run backend tests, navigate to backend directory and run:
+```
+pytest
+```
+
+To run frontend tests, navigate to frontend directory and run:
+```
+pnpm test
+```
