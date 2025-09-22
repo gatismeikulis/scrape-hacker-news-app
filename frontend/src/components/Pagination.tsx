@@ -1,9 +1,10 @@
 import "./Pagination.css";
-interface PaginationProps {
+
+type PaginationProps = {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-}
+};
 
 export function Pagination({
   currentPage,
@@ -22,7 +23,11 @@ export function Pagination({
 
   return (
     <div className="pagination">
-      <button onClick={onPageDecrement} disabled={currentPage <= 1}>
+      <button
+        onClick={onPageDecrement}
+        disabled={currentPage <= 1}
+        data-testid="pagination-decrement-button"
+      >
         ←
       </button>
       <div className="page-label">
