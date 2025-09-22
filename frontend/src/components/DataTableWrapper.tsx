@@ -1,6 +1,8 @@
 import DataTable from "datatables.net-react";
-import DT, { type ConfigColumns } from "datatables.net-dt"; // default theme
+import DT, { type ConfigColumns, type Config } from "datatables.net-dt"; // default theme
+import "./DataTableWrapper.css";
 
+// consider using generics to sync the data and the columns
 type DataTableWrapperProps = {
   data: any[];
   columns: ConfigColumns[];
@@ -9,18 +11,12 @@ type DataTableWrapperProps = {
 export function DataTableWrapper({ data, columns }: DataTableWrapperProps) {
   DataTable.use(DT);
 
-  return (
-    <DataTable data={data} columns={columns} className="">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Position</th>
-          <th>Office</th>
-          <th>Extn.</th>
-          <th>Start date</th>
-          <th>Salary</th>
-        </tr>
-      </thead>
-    </DataTable>
-  );
+  const options: Config = {
+    ordering: false,
+    paging: false,
+    info: false,
+    searching: false,
+  };
+
+  return <DataTable data={data} columns={columns} options={options} />;
 }
