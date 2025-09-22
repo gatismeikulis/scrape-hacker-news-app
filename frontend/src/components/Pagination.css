@@ -1,0 +1,25 @@
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--step) * 3);
+  margin-top: calc(var(--step) * 3);
+}
+
+.pagination button {
+  padding: calc(var(--step) * 1.5) calc(var(--step) * 2.5);
+  border: 1px solid var(--surface-border);
+  background: var(--surface);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination .page-label {
+  font-size: 14px;
+  color: var(--text-secondary);
+}

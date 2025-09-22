@@ -1,0 +1,39 @@
+.table-container {
+  overflow: auto;
+}
+
+.articles-table {
+  width: 100%;
+}
+
+.articles-table thead th {
+  background: var(--surface-muted);
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.articles-table thead th,
+.articles-table tbody td {
+  padding: calc(var(--step) * 2.5) calc(var(--step) * 3);
+  border-bottom: 1px solid var(--surface-border);
+  color: var(--text-primary);
+}
+
+.articles-table tbody tr:hover {
+  background: var(--surface-muted);
+}
+
+.article-title {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.article-link {
+  color: var(--link-color);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.article-link:hover {
+  text-decoration: underline;
+  color: var(--link-color-hover);
+}

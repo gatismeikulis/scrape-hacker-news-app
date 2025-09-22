@@ -1,0 +1,21 @@
+.scraping {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--step) * 3);
+}
+
+.scraping input {
+  width: 80px;
+  padding: calc(var(--step) * 1.5) calc(var(--step) * 2);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius);
+}
+
+.scraping-button {
+  padding: calc(var(--step) * 2) calc(var(--step) * 3);
+  background: var(--btn-bg);
+  color: var(--btn-text);
+  border: 1px solid var(--btn-border);
+  border-radius: var(--radius);
+  cursor: pointer;
+}

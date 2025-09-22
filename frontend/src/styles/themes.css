@@ -4,14 +4,23 @@
 
   color-scheme: light dark;
 
-  --primary-color: #4b9460;
-  --primary-color-dark: #2c5a3a;
-  --primary-color-light: #a8c2b3;
-  --text-primary: #2d3642;
-  --text-secondary: #6f7885;
-  --background-color: #f7f8f9;
+  --text-primary: #1f2937; /* slate-800 */
+  --text-secondary: #6b7280; /* gray-500 */
+  --background-color: #f9fafb; /* gray-50 */
+
+  --surface: #ffffff;
+  --surface-border: #e5e7eb; /* gray-200 */
+  --surface-muted: #f3f4f6; /* gray-100 */
+
+  --link-color: #2563eb; /* blue-600 */
+  --link-color-hover: #1d4ed8; /* blue-700 */
+
+  --btn-bg: #111827; /* gray-900 */
+  --btn-text: #ffffff;
+  --btn-border: #111827;
 
   --step: 4px; /* for more convenient spacing */
+  --radius: 8px;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

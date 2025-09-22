@@ -1,3 +1,4 @@
+import "./Pagination.css";
 interface PaginationProps {
   currentPage: number;
   totalPages: number;
@@ -20,11 +21,11 @@ export function Pagination({
   }
 
   return (
-    <div>
+    <div className="pagination">
       <button onClick={onPageDecrement} disabled={currentPage <= 1}>
         ←
       </button>
-      <div>
+      <div className="page-label">
         Page {currentPage} of {totalPages}
       </div>
       <button onClick={onPageIncrement} disabled={currentPage >= totalPages}>
